@@ -1,5 +1,4 @@
 import React from "react";
-import axios from 'axios';
 import { Carousel, Image, Jumbotron, Container, Button, Nav, Card } from "react-bootstrap";
 
 export default class Landing extends React.Component {
@@ -9,9 +8,11 @@ export default class Landing extends React.Component {
       }
 
       componentDidMount() {
-        fetch("http://3.139.235.28:8080/project0/product")
-        .then(res => console.log(res))
-        .then(json => this.setState({ guitars: json }))
+        fetch('http://3.139.235.28:8080/project0/product')
+        .then(res => res.json())
+        .then((out) => {
+          console.log( out);
+        }).catch(err => console.error(err));
       }
 
       render() {
@@ -130,7 +131,6 @@ export default class Landing extends React.Component {
                     </Card.Body>
                 </Card>
                 <ul>
-                { this.state.guitars.map(guitar => <li key={guitar.id}>{guitar.title}</li>)}
                 </ul>
             </div>
 
