@@ -52,7 +52,7 @@ export default class Guitars extends React.Component {
                     <Button type="submit">Submit</Button>
                 </Form>
                 <ul>
-                    {this.state.guitars.map(item => <li key={item.id}>{item.title}</li>)}
+                    {this.props.guitars.map(item => <li key={item.id}>{item.title}</li>)}
                 </ul>
             </div>
         )

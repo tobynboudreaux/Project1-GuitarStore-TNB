@@ -9,8 +9,8 @@ export default class Landing extends React.Component {
       }
 
       componentDidMount() {
-        fetch(this.props.url + "product/?_limit=5")
-        .then(res => res.json())
+        fetch("http://3.139.235.28:8080/project0/product")
+        .then(res => console.log(res))
         .then(json => this.setState({ guitars: json }))
       }
 
@@ -28,25 +28,19 @@ export default class Landing extends React.Component {
                         <Nav className="justify-content-center mr-auto">
                             <Button variant="dark">
                                 <Nav.Item>
-                                    <Nav.Link href="/guitars">
-                                        Shop Guitars
-                                    </Nav.Link>
+                                    Shop Guitars
                                 </Nav.Item>
                             </Button>
                             {' '}
                             <Button variant="success">
                                 <Nav.Item>
-                                    <Nav.Link href="/login">
-                                        Sign In
-                                    </Nav.Link>
+                                    Sign In
                                 </Nav.Item>
                             </Button>
                             {' '}
                             <Button variant="success">
                                 <Nav.Item>
-                                    <Nav.Link href="/login">
-                                        Sign Up
-                                    </Nav.Link>
+                                    Sign Up
                                 </Nav.Item>
                             </Button>
                         </Nav>
