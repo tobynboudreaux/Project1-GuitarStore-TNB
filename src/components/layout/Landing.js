@@ -9,7 +9,7 @@ export default class Landing extends React.Component {
       }
 
       componentDidMount() {
-        fetch("//3.139.235.28:8080/project0/product")
+        fetch("http://3.139.235.28:8080/project0/product")
         .then(res => console.log(res))
         .then(json => this.setState({ guitars: json }))
       }
