@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Guitars from "../../components/guitars/Guitars";
+import Login from "../../components/auth/Login";
 
 export default class Routes extends React.Component {
     state = {
@@ -8,13 +9,11 @@ export default class Routes extends React.Component {
     }
 
     componentDidMount() {
-        this.getGuitars();
-    }
-
-    getGuitars = () => {
-        fetch(`${this.props.url}product`)
-        .then(resp => resp.text())
-        .then(json => console.log(json))
+        fetch("http://3.139.235.28:8080/project0/product")
+        .then(res => res.json())
+        .then((json) => {
+          this.setState({ guitars: json });
+        }).catch(err => console.error(err));
     }
 
     postGuitars = (e) => {
@@ -30,7 +29,10 @@ export default class Routes extends React.Component {
         return (
             <section>
                 <Switch>
-                <Route exact path="/guitars" component={Guitars} guitars={this.state.guitars} />
+                    <Route exact path="/guitars" render={(props => (
+                        <Guitars {...props} guitars={this.state.guitars} />
+                    ))} />
+                    <Route exact path="/login" component={Login} />
                 </Switch>
             </section>
         )

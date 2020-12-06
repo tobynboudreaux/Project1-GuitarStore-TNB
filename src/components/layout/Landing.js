@@ -10,8 +10,8 @@ export default class Landing extends React.Component {
       componentDidMount() {
         fetch("http://3.139.235.28:8080/project0/product")
         .then(res => res.json())
-        .then((out) => {
-          console.log( out);
+        .then((json) => {
+          this.setState({ guitars: json });
         }).catch(err => console.error(err));
       }
 
@@ -28,21 +28,21 @@ export default class Landing extends React.Component {
                         </p>
                         <Nav className="justify-content-center mr-auto">
                             <Button variant="dark">
-                                <Nav.Item>
+                                <Nav.Link href="/guitars">
                                     Shop Guitars
-                                </Nav.Item>
+                                </Nav.Link>
                             </Button>
                             {' '}
                             <Button variant="success">
-                                <Nav.Item>
+                                <Nav.Link href="login">
                                     Sign In
-                                </Nav.Item>
+                                </Nav.Link>
                             </Button>
                             {' '}
                             <Button variant="success">
-                                <Nav.Item>
+                                <Nav.Link href="/signup">
                                     Sign Up
-                                </Nav.Item>
+                                </Nav.Link>
                             </Button>
                         </Nav>
                     </Container>
@@ -118,18 +118,24 @@ export default class Landing extends React.Component {
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>
-                <Card>
-                    <Card.Body>
-                        <Card.Title>Card Title</Card.Title>
-                        <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
+                <Jumbotron fluid>
+                    <h1 className="text-center">Our Top 5 Picks</h1>
+                </Jumbotron>
+                
+                    {this.state.guitars.slice(0, 5).map(guitar => (
+                        <Card key={guitar.uniqueID}>
+                        <Card.Body>
+                        <Card.Title>{guitar.title}</Card.Title>
+                        <Card.Subtitle className="mb-2 text-muted">{guitar.price}</Card.Subtitle>
                         <Card.Text>
-                        Some quick example text to build on the card title and make up the bulk of
-                        the card's content.
+                        {guitar.description}
                         </Card.Text>
-                        <Card.Link href="#">Card Link</Card.Link>
-                        <Card.Link href="#">Another Link</Card.Link>
-                    </Card.Body>
-                </Card>
+                        <Card.Link href="/cart">Add to Cart</Card.Link>
+                        <Card.Link href={"/guitar/" + guitar.uniqueID}>Guitar Page</Card.Link>
+                        </Card.Body>
+                        </Card>
+                    ))}
+                    
                 <ul>
                 </ul>
             </div>

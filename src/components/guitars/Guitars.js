@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Card } from "react-bootstrap";
 
 export default class Guitars extends React.Component {
 
@@ -33,10 +33,7 @@ export default class Guitars extends React.Component {
     render() {
         return (
             <div>
-                <Form onSubmit={(e) => {
-                    e.preventDefault()
-                    this.addProduct(e)
-                }}>
+                <Form >
                     <Form.Label>
                         title
                         <Form.Control type="text" name="title" />
@@ -51,9 +48,19 @@ export default class Guitars extends React.Component {
                     </Form.Label>
                     <Button type="submit">Submit</Button>
                 </Form>
-                <ul>
-                    {this.props.guitars.map(item => <li key={item.id}>{item.title}</li>)}
-                </ul>
+                {this.props.guitars.map(guitar => (
+                        <Card key={guitar.uniqueID}>
+                        <Card.Body>
+                        <Card.Title>{guitar.title}</Card.Title>
+                        <Card.Subtitle className="mb-2 text-muted">{guitar.price}</Card.Subtitle>
+                        <Card.Text>
+                        {guitar.description}
+                        </Card.Text>
+                        <Card.Link href="/cart">Add to Cart</Card.Link>
+                        <Card.Link href={"/guitar/" + guitar.uniqueID}>Guitar Page</Card.Link>
+                        </Card.Body>
+                        </Card>
+                    ))}
             </div>
         )
     }
