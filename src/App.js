@@ -1,19 +1,28 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import NavbarComponent from "./components/layout/NavbarComponent";
-import Landing from "./components/layout/Landing";
 import Routes from "./components/routing/Routes";
-const url = "http://3.139.235.28:8080/project0/";
 
 function App() {
+
+  const [user, setUser] = useState();
+  
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem('user', JSON.stringify(user));
+      setUser(user);
+    }
+  }, [user, setUser])
+
+  console.log(localStorage.getItem("user"))
+
   return (
     <Router>
       <Fragment>
-        <NavbarComponent />
         <Switch>
-          <Route exact path="/" component={Landing} url={url} />
-          <Route component={Routes} url={url} />
+          <Route render={(props => (
+              <Routes {...props} user={user} setUser={setUser} />
+          ))} />
         </Switch>
       </Fragment>
     </Router>

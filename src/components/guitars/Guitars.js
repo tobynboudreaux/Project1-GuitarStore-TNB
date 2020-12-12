@@ -8,15 +8,20 @@ export default class Guitars extends React.Component {
     };
 
     addProduct(event) {
-        fetch("https://jsonplaceholder.typicode.com/posts", {
+        fetch("http://3.139.235.28:8080/project0/product", {
             method: 'POST',
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-              },
             body: JSON.stringify({
-              title: event.target.title.value,
-              body: event.target.body.value,
-              userId: event.target.userId.value  
+                uniqueID: 0,
+                posID: 99,
+                title: event.target.title.value,
+                description: event.target.description.value,
+                price: event.target.price.value,
+                department_UID: event.target.department.value,
+                style_UID: 3,
+                category_UID: 3,
+                brand_UID: event.target.brand.value,
+                premiumGear_UID: 3,
+                condition_UID: 3  
             })
         })
         .then((response) => response.json())
@@ -24,27 +29,30 @@ export default class Guitars extends React.Component {
 
     }
 
-    componentDidMount() {
-        fetch("https://jsonplaceholder.typicode.com/posts")
-        .then(res => res.json())
-        .then(json => this.setState({ guitars: json }))
-    };
-
     render() {
         return (
             <div>
-                <Form >
+                <h1>Create a new product</h1>
+                <Form onSubmit={e => this.addProduct(e)}>
                     <Form.Label>
                         title
                         <Form.Control type="text" name="title" />
                     </Form.Label>
                     <Form.Label>
-                        body
-                        <Form.Control type="text" name="body" />
+                        description
+                        <Form.Control type="text" name="description" />
                     </Form.Label>
                     <Form.Label>
-                        userId
-                        <Form.Control type="text" name="userId" />
+                        price
+                        <Form.Control type="text" name="price" />
+                    </Form.Label>
+                    <Form.Label>
+                        brand
+                        <Form.Control type="text" name="brand" />
+                    </Form.Label>
+                    <Form.Label>
+                        department
+                        <Form.Control type="text" name="department" />
                     </Form.Label>
                     <Button type="submit">Submit</Button>
                 </Form>
@@ -56,8 +64,7 @@ export default class Guitars extends React.Component {
                         <Card.Text>
                         {guitar.description}
                         </Card.Text>
-                        <Card.Link href="/cart">Add to Cart</Card.Link>
-                        <Card.Link href={"/guitar/" + guitar.uniqueID}>Guitar Page</Card.Link>
+                        <Card.Link href={"/guitars/" + guitar.uniqueID}>Guitar Page</Card.Link>
                         </Card.Body>
                         </Card>
                     ))}

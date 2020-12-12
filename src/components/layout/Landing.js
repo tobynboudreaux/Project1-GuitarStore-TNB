@@ -7,6 +7,8 @@ export default class Landing extends React.Component {
         guitars: []
       }
 
+      user = localStorage.getItem("user");
+
       componentDidMount() {
         fetch("http://3.139.235.28:8080/project0/product")
         .then(res => res.json())
@@ -16,8 +18,6 @@ export default class Landing extends React.Component {
       }
 
       render() {
-        console.log(this.state.guitars)
-
         return (
             <div>
                 <Jumbotron fluid>
@@ -26,24 +26,32 @@ export default class Landing extends React.Component {
                         <p>
                         This is a place where guitar lovers can come and do what they love. Click the button below to start browsing now!
                         </p>
-                        <Nav className="justify-content-center mr-auto">
-                            <Button variant="dark">
-                                <Nav.Link href="/guitars">
-                                    Shop Guitars
-                                </Nav.Link>
-                            </Button>
-                            {' '}
-                            <Button variant="success">
-                                <Nav.Link href="login">
-                                    Sign In
-                                </Nav.Link>
-                            </Button>
-                            {' '}
-                            <Button variant="success">
-                                <Nav.Link href="/signup">
-                                    Sign Up
-                                </Nav.Link>
-                            </Button>
+                        <Nav className="container-fluid">
+                                <Nav.Item className="">
+                                    <Nav.Link href="/guitars">
+                                        <Button>
+                                            Shop Guitars
+                                        </Button>
+                                    </Nav.Link>
+                                </Nav.Item>
+                            {this.user ? null : 
+                            <Nav>
+                                <Nav.Item className="ml-auto">
+                                        <Nav.Link href="/login">
+                                            <Button>
+                                                Sign In
+                                            </Button>
+                                        </Nav.Link>
+                                </Nav.Item>   
+                                <Nav.Item >
+                                        <Nav.Link href="/signup">
+                                            <Button>
+                                                Sign Up
+                                            </Button>
+                                        </Nav.Link>
+                                </Nav.Item>
+                            </Nav>
+                            }
                         </Nav>
                     </Container>
                 </Jumbotron>
@@ -130,8 +138,7 @@ export default class Landing extends React.Component {
                         <Card.Text>
                         {guitar.description}
                         </Card.Text>
-                        <Card.Link href="/cart">Add to Cart</Card.Link>
-                        <Card.Link href={"/guitar/" + guitar.uniqueID}>Guitar Page</Card.Link>
+                        <Card.Link href={"/guitars/" + guitar.uniqueID}>Guitar Page</Card.Link>
                         </Card.Body>
                         </Card>
                     ))}
