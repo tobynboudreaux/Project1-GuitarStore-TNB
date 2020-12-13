@@ -1,5 +1,6 @@
 import React, {Fragment, useState} from 'react'
 import { Form, FormGroup, Button } from 'react-bootstrap'
+import API from '../util/API';
 
 const SignUp = (props) => {
 
@@ -11,19 +12,15 @@ const SignUp = (props) => {
 
     const createUser = async () => {
         setLoading(true);
-        await (
-          fetch("http://3.139.235.28:8080/project0/sign/up", {
-            method: "POST",
-            body: JSON.stringify ({
-              "username": userUsername,
-              "email": userEmail,
-              "password": userPassword
-            })    
-          })
-          .then(res => res.json())
-          .then(json => props.setUser(json))
+        const userObj = {
+            "username": userUsername,
+            "email": userEmail,
+            "password": userPassword
+        }
+        await API.createUser(userObj)
+          .then(res => res.data)
+          .then(data => props.setUser(data))
           .then(setLoading(false))
-        )
     }
 
     return (

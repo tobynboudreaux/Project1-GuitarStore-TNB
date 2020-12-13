@@ -14,14 +14,12 @@ function App() {
     }
   }, [user, setUser])
 
-  console.log(localStorage.getItem("user"))
-
   return (
     <Router>
       <Fragment>
         <Switch>
           <Route render={(props => (
-              <Routes {...props} user={user} setUser={setUser} />
+              <Routes {...props} storedUser={localStorage.getItem("user")} user={user} setUser={setUser} />
           ))} />
         </Switch>
       </Fragment>

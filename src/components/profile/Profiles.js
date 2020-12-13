@@ -1,36 +1,46 @@
 import React from 'react'
 import { Button, Form, FormGroup } from 'react-bootstrap';
+import API from '../util/API';
 import UserInformationCard from './UserInformationCard';
 const user = localStorage.getItem("user");
 
 class Profiles extends React.Component {
 
     state = {
-        employees: ["a", "e"],
+        employees: [{
+            "uniqueID": 1,
+            "username": "ruben.dominguez",
+            "email": "ruben.dominguez@mail.com",
+            "userType_UID": 1
+        }, {
+            "uniqueID": 2,
+            "username": "toby.boudreaux",
+            "email": "toby.boudreaux@mail.com",
+            "userType_UID": 1
+        }],
         userName: "",
         password: "",
         email: ""
     }
 
     componentDidMount() {
+        API.getUsers()
         fetch("http://3.139.235.28:8080/project0/user")
-        .then(res => res.json())
-        .then(json => console.log(json))
+        .then(res => res.data)
+        .then(data => console.log(data))
     }
 
     postUser() {
-        fetch("http://3.139.235.28:8080/project0/user", {
-            method: "POST",
-            body: JSON.stringify({
-                uniqueID: 0,
-                username: this.state.userName,
-                email: this.state.email,
-                password: this.state.password,
-                userType_UID: 2
-            })
-        })
-        .then(res => res.json())
-        .then(json => console.log(json))
+        const userObj = {
+            uniqueID: 0,
+            username: this.state.userName,
+            email: this.state.email,
+            password: this.state.password,
+            userType_UID: 2
+        }
+        API.createUser(userObj)
+        .then(res => res.data)
+        .then(data => console.log(data))
     }
 
     render() {

@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { useState } from "react";
 import { Button, Form, FormGroup } from "react-bootstrap";
+import API from "../util/API";
 
 function Login (props) {
 
@@ -11,18 +12,15 @@ function Login (props) {
 
   const authHandler = async () => {
       setLoading(true);
-      await (
-        fetch("http://3.139.235.28:8080/project0/userlogin", {
-          method: "POST",
-          body: JSON.stringify ({
-            "username": userUsername,
-            "password": userPassword
-          })    
-        })
-        .then(res => res.json())
-        .then(json => props.setUser(json))
+      const userObj = {
+        "username": userUsername,
+        "password": userPassword
+      }
+      await API.signIn(userObj)
+        .then(res => res.data)
+        .then(data => props.setUser(data))
         .then(setLoading(false))
-      )
+      
   }
 
   return (

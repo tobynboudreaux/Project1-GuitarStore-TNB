@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { Card, Form, Button, FormGroup } from 'react-bootstrap'
+import API from '../util/API';
 
 const UserInformationCard = (props) => {
 
@@ -10,7 +11,18 @@ const UserInformationCard = (props) => {
     const [loading, setLoading] = useState(false);
 
     const deleteUser = () => {
-        console.log("delete user")
+        API.deleteUser(props.employee.uniqueID)
+    }
+
+    const editUser = () => {
+        const userObj = {
+            uniqueID: props.employee.uniqueID,
+            username: userUsername,
+            email: userEmail,
+            password: userPassword,
+            userType_UID: props.employee.userType_UID
+        }
+        API.editUser(props.employee.uniqueID, userObj);
     }
     
     return (
@@ -23,7 +35,10 @@ const UserInformationCard = (props) => {
                     <Button onClick={() => setShow(!show)}>Edit User</Button>
                     <Button onClick={() => deleteUser()}>Delete User</Button>
                     {show ? (
-                    <Form>
+                    <Form onSubmit={(e) => {
+                    e.preventDefault();
+                    editUser();
+                    }}>
                         <br />
                         <FormGroup>
                         <input

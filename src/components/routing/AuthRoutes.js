@@ -1,9 +1,8 @@
 import React from 'react'
 import {Switch, Route} from 'react-router-dom';
 import Profiles from "../profile/Profiles";
-import UserInformationCard from "../profile/UserInformationCard";
 
-const AuthRoutes = (props) => {
+const AuthRoutes = () => {
     return (
         <section>
             <Switch>
