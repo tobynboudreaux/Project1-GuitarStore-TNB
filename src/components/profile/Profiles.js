@@ -86,7 +86,7 @@ class Profiles extends React.Component {
                     </Button>
                 </Form>
                 {this.state.employees.map(e => (
-                    <UserInformationCard employee={e} />
+                    <UserInformationCard key={e.uniqueID} employee={e} />
                 ))}
             </div>
         )

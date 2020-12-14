@@ -10,17 +10,21 @@ const SignUp = (props) => {
     const [loading, setLoading] = useState(false);
     const user = localStorage.getItem("user")
 
-    const createUser = async () => {
+    const createUser = () => {
         setLoading(true);
         const userObj = {
             "username": userUsername,
             "email": userEmail,
             "password": userPassword
         }
-        await API.createUser(userObj)
+        try {
+        API.createUser(userObj)
           .then(res => res.data)
           .then(data => props.setUser(data))
-          .then(setLoading(false))
+        } catch(err) {
+            console.log(err)
+        }
+        setLoading(false)
     }
 
     return (

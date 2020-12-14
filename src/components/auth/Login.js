@@ -10,17 +10,20 @@ function Login (props) {
   const [loading, setLoading] = useState(false);
   const user = localStorage.getItem("user")
 
-  const authHandler = async () => {
+  const authHandler = () => {
       setLoading(true);
       const userObj = {
         "username": userUsername,
         "password": userPassword
       }
-      await API.signIn(userObj)
+      try {
+        API.signIn(userObj)
         .then(res => res.data)
         .then(data => props.setUser(data))
-        .then(setLoading(false))
-      
+      } catch(err) {
+        console.log(err)
+      }
+      setLoading(false)
   }
 
   return (

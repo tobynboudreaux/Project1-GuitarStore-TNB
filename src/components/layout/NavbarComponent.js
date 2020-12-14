@@ -8,10 +8,14 @@ const NavbarComponent = (props) => {
     const user = localStorage.getItem("user")
     const location = useLocation().pathname
     
-    const logout = async () => {
-        await API.signOut()
-        .then(props.setUser())
-        .then(localStorage.clear())
+    const logout = () => {
+        try {
+            API.signOut()
+            .then(props.setUser())
+            .then(localStorage.clear())
+        } catch(err) {
+            console.log(err)
+        }
     }
 
     const links = (
