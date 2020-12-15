@@ -1,11 +1,6 @@
 pipeline {
   agent any
   stages {
-    stage('test') {
-      steps {
-        sh 'npm run test'
-      }
-    }
 
     stage('deploy') {
       when {
