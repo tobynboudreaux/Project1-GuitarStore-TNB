@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('test') {
       steps {
-        sh 'npm run checksum-verify'
+        sh 'npm run build'
       }
     }
 
