@@ -5,6 +5,7 @@ pipeline {
     stage('deploy') {
       when {
         branch 'main'
+        sh 'npm run build'
       }
 
       steps {
