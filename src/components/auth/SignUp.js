@@ -15,7 +15,8 @@ const SignUp = (props) => {
         const userObj = {
             "username": userUsername,
             "email": userEmail,
-            "password": userPassword
+            "password": userPassword,
+            "userType_UID": 2
         }
         try {
         API.createUser(userObj)

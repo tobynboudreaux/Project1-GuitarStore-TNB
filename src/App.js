@@ -14,6 +14,7 @@ function App() {
     }
   }, [user, setUser])
 
+  console.log(localStorage.getItem("user"))
   return (
     <Router>
       <Fragment>

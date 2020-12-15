@@ -11,18 +11,37 @@ const UserInformationCard = (props) => {
     const [loading, setLoading] = useState(false);
 
     const deleteUser = () => {
-        API.deleteUser(props.employee.uniqueID)
+        API.deleteUser(props.employee.id)
     }
 
     const editUser = () => {
         const userObj = {
-            uniqueID: props.employee.uniqueID,
             username: userUsername,
             email: userEmail,
             password: userPassword,
             userType_UID: props.employee.userType_UID
         }
-        API.editUser(props.employee.uniqueID, userObj);
+        API.editUser(props.employee.id, userObj);
+    }
+
+    const promoteUser = () => {
+        const userObj = {
+            username: props.employee.username,
+            email: props.employee.email,
+            password: props.employee.password,
+            userType_UID: 1
+        }
+        API.editUser(props.employee.id, userObj);
+    }
+
+    const demoteUser = () => {
+        const userObj = {
+            username: props.employee.username,
+            email: props.employee.email,
+            password: props.employee.password,
+            userType_UID: 2
+        }
+        API.editUser(props.employee.id, userObj);
     }
     
     return (
@@ -34,6 +53,8 @@ const UserInformationCard = (props) => {
                 <Card.Footer>
                     <Button onClick={() => setShow(!show)}>Edit User</Button>
                     <Button onClick={() => deleteUser()}>Delete User</Button>
+                    <Button onClick={() => promoteUser()}>Promote User to Admin</Button>
+                    <Button onClick={() => demoteUser()}>Demote User to employee</Button>
                     {show ? (
                     <Form onSubmit={(e) => {
                     e.preventDefault();

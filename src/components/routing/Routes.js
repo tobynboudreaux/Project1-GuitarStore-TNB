@@ -21,18 +21,6 @@ export default class Routes extends React.Component {
         .then(data => this.setState({ products: data }))
     }
 
-    getProductsByBrand = (brandID) => {
-        API.getProductByBrand(brandID)
-        .then(res => res.data)
-        .then(data => this.setState({ products: data }))
-    }
-
-    getProductsByDepartment = (departmentID) => {
-        API.getProductByDepartment(departmentID)
-        .then(res => res.data)
-        .then(data => this.setState({ products: data }))
-    }
-
     render() {
         return (
             <section>
@@ -47,11 +35,11 @@ export default class Routes extends React.Component {
                     <Landing {...props} user={this.props.user} />
                     ))} />
                     <Route exact path="/products" render={(props => (
-                        <Products {...props} products={this.state.products} />
+                        <Products {...props} products={this.state.products} user={this.props.user} />
                     ))} />
                     {this.state.products.map(product => (
-                        <Route key={product.uniqueID} exact path={"/products/" + product.uniqueID} render={(props => (
-                            <ProductCard {...props} product={product} user={this.props.user} />
+                        <Route key={product.uniqueID} exact path={"/products/" + product.id} render={(props => (
+                            <ProductCard {...props} key={product.id} product={product} user={this.props.user} />
                         ))} />
                     ))}
                     <Route exact path="/login" render={(props => (
@@ -60,10 +48,9 @@ export default class Routes extends React.Component {
                     <Route exact path="/signup" render={(props => (
                         <SignUp {...props} user={this.props.user} setUser={this.props.setUser} />
                     ))} />
-                    {user ? (
+                    { user && user.charAt(user.length - 3) == 1 ? (
                         <AuthRoutes />
-                    ) : null}
-                    
+                    ): null}
                 </Switch>
             </section>
         )

@@ -2,22 +2,11 @@ import React from 'react'
 import { Button, Form, FormGroup } from 'react-bootstrap';
 import API from '../util/API';
 import UserInformationCard from './UserInformationCard';
-const user = localStorage.getItem("user");
 
 class Profiles extends React.Component {
 
     state = {
-        employees: [{
-            "uniqueID": 1,
-            "username": "ruben.dominguez",
-            "email": "ruben.dominguez@mail.com",
-            "userType_UID": 1
-        }, {
-            "uniqueID": 2,
-            "username": "toby.boudreaux",
-            "email": "toby.boudreaux@mail.com",
-            "userType_UID": 1
-        }],
+        employees: [],
         userName: "",
         password: "",
         email: ""
@@ -25,22 +14,25 @@ class Profiles extends React.Component {
 
     componentDidMount() {
         API.getUsers()
-        fetch("http://3.139.235.28:8080/project0/user")
         .then(res => res.data)
-        .then(data => console.log(data))
+        .then(data => this.setState({ employees: data }))
     }
 
     postUser() {
         const userObj = {
-            uniqueID: 0,
             username: this.state.userName,
             email: this.state.email,
             password: this.state.password,
             userType_UID: 2
         }
-        API.createUser(userObj)
+        try {
+            API.createUser(userObj)
         .then(res => res.data)
         .then(data => console.log(data))
+        } catch (error) {
+            console.log(error)
+        }
+        
     }
 
     render() {
@@ -86,7 +78,7 @@ class Profiles extends React.Component {
                     </Button>
                 </Form>
                 {this.state.employees.map(e => (
-                    <UserInformationCard key={e.uniqueID} employee={e} />
+                    <UserInformationCard key={e.id} employee={e} />
                 ))}
             </div>
         )

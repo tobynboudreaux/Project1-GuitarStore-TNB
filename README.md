@@ -18,7 +18,7 @@ Home page
 Landing Component
 
 "/products"
-Shows all products in the database
+Shows all products in the database, allows CRUD
 Can use the dropdowns to view products by brand/department
 Products Component
 
@@ -26,15 +26,7 @@ Products Component
 Shows the product with the unique ID (id)
 Product Card Component
 
-"/login"
-Login form
-Login Component
-
-"/signup"
-Sign Up form
-SignUp Component
-
 "/employees"
-Shows all employees if user is logged in as Admin
+Shows all employees, allows CRUD
 Profiles Component/UserInformationCard Component
 

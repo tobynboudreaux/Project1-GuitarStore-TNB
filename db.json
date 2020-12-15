@@ -1,0 +1,133 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "ruben.dominguez",
+      "email": "ruben.dominguez@revature.net",
+      "password": "cac6f701071388abe89e12874c9c0bd4",
+      "userType_UID": 1
+    },
+    {
+      "id": 2,
+      "username": "lisa.freiwald",
+      "email": "lisa.freiwald@yahoo.com",
+      "password": "83b7db4f79abb1fef6106020a91609d8",
+      "userType_UID": 2
+    },
+    {
+      "id": 4,
+      "username": "toby.boudreaux",
+      "email": "toby@gmail.comm",
+      "password": "826d13ef16ba9ad3b353c8d4b64a00d6",
+      "userType_UID": 1
+    },
+    {
+      "id": 5,
+      "username": "user.new",
+      "email": "user.new@mail.com",
+      "password": "fdd29096e36bbd2d49f1e6e17e2015ec",
+      "userType_UID": 2
+    },
+    {
+      "username": "employee.new",
+      "email": "employee.new@mail.com",
+      "password": "employeenew",
+      "userType_UID": 2,
+      "id": 6
+    }
+  ],
+  "products": [
+    {
+      "posID": 99,
+      "title": "Gibson Strat",
+      "description": "This guitar is honestly my favorite guitar I have ever seen",
+      "price": "10000",
+      "department": "GUITARS",
+      "brand": "GIBSON",
+      "id": 4
+    },
+    {
+      "id": 1,
+      "posID": 110885571,
+      "title": "Martin OM-45 Deluxe Authentic 1930 VTS Brazilian Rosewood Acoustic Guitar Natural",
+      "description": "This OM-45 Deluxe Authentic 1930 VTS Brazilian Rosewood acoustic guitar? limited to 11 instruments ? draws its inspiration and exacting specifications from the 1930 OM-45 Deluxe acquired at the Guernseys Instrument Auction in April 2014. Its Serial# is 44999. It's real and it's on display today as a masterpiece among the C.F. Martin & Co Museum Collection in Nazareth, Pennsylvania. This careful recreation faithfully employs the most traditional construction techniques and materials available today with specifications rivaling the original from 1930. This instrument also benefits from Martin's Authentic VT S top and bracing; the heavily researched advanced aging process that most accurately reproduces the visual character ? and most importantly ? the sonic performance of the coveted '20s and '30s instruments. A lucky few owners around the world will experience this remarkable instrument. Sadly, and once again, most enthusiasts will never see an original OM-45 Deluxe Authentic 1930 ? there is only a handful in existence today. They're rare and they're real and they embody the finest qualities and timeless traditions of the luthiers' craft, a Martin tradition since 1833.",
+      "price": 79999,
+      "department": "GUITARS",
+      "brand": "GUITAR CENTER",
+      "features": [
+        {
+          "id": 1,
+          "code": "BWB",
+          "description": "BASSWOOD BODY"
+        },
+        {
+          "id": 3,
+          "code": "RWF",
+          "description": "ROSEWOOD FRETBOARD"
+        }
+      ],
+      "specifications": [
+        {
+          "id": 1,
+          "code": "FR12",
+          "description": "12\" FRETBOARD RADIUS"
+        },
+        {
+          "id": 2,
+          "code": "S2434",
+          "description": "24-3/4\" SCALE"
+        }
+      ],
+      "reviews": [
+        {
+          "id": 1,
+          "value": 5,
+          "title": "Great Playing, Great Sounding for any price",
+          "body": "I seriously love this guitar. While I've owned guitars costing 10 times as much as I paid for the LP Special I P90, none of them sounded better or played better. While the electronics, tuners, and other hardware are nothing special, I've had no issues with any of it. After a setup by the tech at GC, the action is nice and there's no fret buzz. It stays in tune well enough, and it sounds like a dream. The P90 pickups have that special flavor you just can duplicate elsewhere. Unless your're a shredder, you'll love this little guitar."
+        },
+        {
+          "id": 2,
+          "value": 3,
+          "title": "Beware the bridge",
+          "body": "I purchased this at my local GC as my first foray into electric guitar, looking for a lower cost option since I didn't know the level of commitment I'd maintain. The overall set up out of the box was very playable, complete novices have plenty of tones to explore though the neck/rhythm pick up is a bit flat and muddy sounding. After pouring close to 100 hours of play time and a new set of strings into the guitar, a few things really started to become bothersome: - The intonated bridge is, well, awful. - Stock tuning machine heads are frustrating and won't keep the guitar in tune for more than a few songs. - Again, that frigging bridge... I learned a lot of things from this guitar about what I wanted/needed to make for an enjoyable playing experience. If you have the $50 or so extra get the Special II for the Tune-o-Matic bridge, it'll save you a lot of frustration."
+        }
+      ],
+      "reviewAverage": 4
+    },
+    {
+      "id": 2,
+      "posID": 115693459,
+      "title": "Fender Player Stratocaster Maple Fingerboard Electric Guitar  Capri Orange",
+      "description": "Over the decades, players have been continually inspired by the sound of a Strat. From the clarity of the high end, through the gut punch of the mids and the solid lows, it's a sound that's helped define what an electric guitar should be?versatile enough for any style and broad enough for any player to find an individual voice. This Player Series Stratocaster puts all of the classic features of the Strat at your fingertips while adding a modern edge, including a modern neck profile, medium-jumbo frets and a freshly redesigned 2-point fulcrum vibrato bridge. With a beautiful gloss finish over a solid alder body, a 22-fret pau ferro fingerboard with a contemporary 9.5\" radius for easy bending, the Player Series Stratocaster is primed and ready to carry you along your musical voyage.",
+      "price": 699.99,
+      "department": "BASSES",
+      "brand": "IBANEZ",
+      "features": [
+        {
+          "id": 1,
+          "code": "BWB",
+          "description": "BASSWOOD BODY"
+        }
+      ],
+      "specifications": [
+        {
+          "id": 3,
+          "code": "NW11116",
+          "description": "1-11/16 NUT WIDTH"
+        }
+      ],
+      "reviews": [],
+      "reviewAverage": 0
+    },
+    {
+      "uniqueID": 0,
+      "posID": 99,
+      "title": "ProductTest",
+      "description": "VeryNice",
+      "price": "100",
+      "department": "GUITARS",
+      "brand": "GIBSON",
+      "id": 5
+    }
+  ]
+}

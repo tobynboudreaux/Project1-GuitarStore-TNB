@@ -7,9 +7,7 @@ export default class Landing extends React.Component {
     state = {
         products: []
       }
-
-      user = localStorage.getItem("user");
-
+      
       componentDidMount() {
         API.getProduct()
         .then(res => res.data)
@@ -23,9 +21,9 @@ export default class Landing extends React.Component {
             <div>
                 <Jumbotron fluid>
                     <Container>
-                        <h1>product Shop</h1>
+                        <h1>Product Shop</h1>
                         <p>
-                        This is a place where product lovers can come and do what they love. Click the button below to start browsing now!
+                            Product Shop allows you to manage a store of employees. 
                         </p>
                         <Nav className="container-fluid">
                                 <Nav.Item className="">
@@ -35,24 +33,6 @@ export default class Landing extends React.Component {
                                         </Button>
                                     </Nav.Link>
                                 </Nav.Item>
-                            {this.user ? null : 
-                            <Nav>
-                                <Nav.Item className="ml-auto">
-                                        <Nav.Link href="/login">
-                                            <Button>
-                                                Sign In
-                                            </Button>
-                                        </Nav.Link>
-                                </Nav.Item>   
-                                <Nav.Item >
-                                        <Nav.Link href="/signup">
-                                            <Button>
-                                                Sign Up
-                                            </Button>
-                                        </Nav.Link>
-                                </Nav.Item>
-                            </Nav>
-                            }
                         </Nav>
                     </Container>
                 </Jumbotron>
@@ -132,14 +112,14 @@ export default class Landing extends React.Component {
                 </Jumbotron>
                 
                     {this.state.products.slice(0, 5).map(product => (
-                        <Card key={product.uniqueID}>
+                        <Card key={product.id}>
                         <Card.Body>
                         <Card.Title>{product.title}</Card.Title>
                         <Card.Subtitle className="mb-2 text-muted">{product.price}</Card.Subtitle>
                         <Card.Text>
                         {product.description}
                         </Card.Text>
-                        <Card.Link href={"/products/" + product.uniqueID}>Product Page</Card.Link>
+                        <Card.Link href={"/products/" + product.id}>Product Page</Card.Link>
                         </Card.Body>
                         </Card>
                     ))}

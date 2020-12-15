@@ -17,9 +17,9 @@ function Login (props) {
         "password": userPassword
       }
       try {
-        API.signIn(userObj)
+        API.getUsers()
         .then(res => res.data)
-        .then(data => props.setUser(data))
+        .then(data => props.setUser(data.filter(user => { return user.username == userUsername })))
       } catch(err) {
         console.log(err)
       }

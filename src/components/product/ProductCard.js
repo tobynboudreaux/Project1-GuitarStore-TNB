@@ -1,37 +1,33 @@
 import React, {useState} from 'react'
 import { Button, Card, Form } from 'react-bootstrap'
 import API from '../util/API'
+const user = localStorage.getItem("user");
 
 const ProductCard = (props) => {
 
     const [show, setShow] = useState(false);
 
     const deleteProduct = () => {
-        API.deleteProduct(props.product.uniqueID)
+        API.deleteProduct(props.product.id)
     }
 
     const editProduct = (event) => {
         const product = {
-            uniqueID: 0,
             posID: 99,
             title: event.target.title.value,
             description: event.target.description.value,
             price: event.target.price.value,
-            department_UID: event.target.department.value,
-            style_UID: 3,
-            category_UID: 3,
-            brand_UID: event.target.brand.value,
-            premiumGear_UID: 3,
-            condition_UID: 3  
+            department: event.target.department.value,
+            brand: event.target.brand.value
         }
-        API.editProduct(props.product.uniqueID, product)
+        API.editProduct(props.product.id, product)
         .then(res => res.data)
         .then(data => console.log(data))
     }
 
     return (
         <div>
-            <Card key={props.product.uniqueID}>
+            <Card key={props.product.id}>
                 <Card.Body>
                     <Card.Title>{props.product.title}</Card.Title>
                     {props.user ? <Card.Text>Position ID: {props.product.posID}</Card.Text> : null }
@@ -43,43 +39,43 @@ const ProductCard = (props) => {
                     </Card.Text>
                     <br></br>
                     <br></br>
-                    <Card.Text>Department: {props.product.department.description}</Card.Text>
-                    <Card.Text>Style: {props.product.style.description}</Card.Text>
-                    <Card.Text>Category: {props.product.category.description}</Card.Text>
-                    <Card.Text>Brand: {props.product.brand.description}</Card.Text>
-                    <Card.Text>Premium Gear: {props.product.premiumGear.description}</Card.Text>
-                    <Card.Text>Condition: {props.product.condition.description}</Card.Text>
+                    <Card.Text>Department: {props.product.department}</Card.Text>
+                    <Card.Text>Brand: {props.product.brand}</Card.Text>
                     <Card.Text>Features: </Card.Text>
-                    <Button onClick={() => setShow(!show)}>Edit Product</Button>
-                    {show ? (
-                        <Form onSubmit={e => {
-                            e.preventDefault();
-                            editProduct(e);
-                        }}>
-                        <Form.Label>
-                            title
-                            <Form.Control type="text" name="title" />
-                        </Form.Label>
-                        <Form.Label>
-                            description
-                            <Form.Control type="text" name="description" />
-                        </Form.Label>
-                        <Form.Label>
-                            price
-                            <Form.Control type="text" name="price" />
-                        </Form.Label>
-                        <Form.Label>
-                            brand
-                            <Form.Control type="text" name="brand" />
-                        </Form.Label>
-                        <Form.Label>
-                            department
-                            <Form.Control type="text" name="department" />
-                        </Form.Label>
-                        <Button type="submit">Submit</Button>
-                    </Form>
-                    ): null}
-                    <Button onClick={() => deleteProduct()}>Delete Product</Button>
+                    {user ? (
+                        <div>
+                            <Button onClick={() => setShow(!show)}>Edit Product</Button>
+                            {show ? (
+                                <Form onSubmit={e => {
+                                    e.preventDefault();
+                                    editProduct(e);
+                                }}>
+                                <Form.Label>
+                                    title
+                                    <Form.Control type="text" name="title" />
+                                </Form.Label>
+                                <Form.Label>
+                                    description
+                                    <Form.Control type="text" name="description" />
+                                </Form.Label>
+                                <Form.Label>
+                                    price
+                                    <Form.Control type="text" name="price" />
+                                </Form.Label>
+                                <Form.Label>
+                                    brand
+                                    <Form.Control type="text" name="brand" />
+                                </Form.Label>
+                                <Form.Label>
+                                    department
+                                    <Form.Control type="text" name="department" />
+                                </Form.Label>
+                                <Button type="submit">Submit</Button>
+                            </Form>
+                            ): null}
+                            <Button onClick={() => deleteProduct()}>Delete Product</Button>
+                        </div>
+                    ) : null}
                     {props.product.features ? 
                     props.product.features.map(feat => (
                         <div>
