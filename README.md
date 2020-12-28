@@ -72,11 +72,13 @@ Available Routes:
 
 Navbar Component is seen on every page and dynamically changes
 
+
 "/":
 
 Home page
 
 Landing Component
+
 
 "/login"
 
@@ -84,11 +86,13 @@ Login page
 
 Allows users to login as an employee or administrator
 
+
 "/signup"
 
 SignUp page
 
 Allows users to sign up to be an employee of the company
+
 
 "/products"
 
@@ -98,11 +102,13 @@ Can use the dropdowns to view products by brand/department
 
 Products Component
 
+
 "/product/(id)"
 
 Shows the product with the unique ID (id)
 
 Product Card Component
+
 
 "/employees"
 
