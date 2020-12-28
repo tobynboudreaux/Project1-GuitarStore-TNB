@@ -60,7 +60,7 @@ npm i axios react-bootstrap react-router-dom
 - Run the following command to start the application on http://localhost:3000:
 
 ```
-npm start to start the application on http://localhost:3000
+npm start
 ```
 
 ## Usage
